@@ -43,15 +43,17 @@ class CloudflareBypasser:
         if button:
             return button
         else:
+            return None
+            # there's actually no need to search recursively for Indeed.
             # If the button is not found, search it recursively
-            self.log_message("Basic search failed. Searching for button recursively.")
-            ele = self.driver.ele("tag:body")
-            iframe = self.search_recursively_shadow_root_with_iframe(ele)
-            if iframe:
-                button = self.search_recursively_shadow_root_with_cf_input(iframe("tag:body"))
-            else:
-                self.log_message("Iframe not found. Button search failed.")
-            return button
+            # self.log_message("Basic search failed. Searching for button recursively.")
+            # ele = self.driver.ele("tag:body")
+            # iframe = self.search_recursively_shadow_root_with_iframe(ele)
+            # if iframe:
+            #     button = self.search_recursively_shadow_root_with_cf_input(iframe("tag:body"))
+            # else:
+            #     self.log_message("Iframe not found. Button search failed.")
+            # return button
 
     def log_message(self, message):
         if self.log:
@@ -65,6 +67,7 @@ class CloudflareBypasser:
                 button.click()
             else:
                 self.log_message("Verification button not found.")
+                raise Exception('Button not found!')
 
         except Exception as e:
             self.log_message(f"Error clicking verification button: {e}")
