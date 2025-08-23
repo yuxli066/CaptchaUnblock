@@ -114,7 +114,7 @@ class CloudflareBypasser:
                 print('Logging in.')
                 
                 emailInput = self.driver.ele('css:[id="ifl-InputFormField-:r0:"]')
-                emailInput.input("yuxuan.leo.li@gmail.com")
+                emailInput.input("raveoli22@gmail.com")
                 
                 self.clickIfVisible('[data-tn-element="auth-page-email-submit-button"]', 'Continue')
                 self.tryBypass()
@@ -128,7 +128,7 @@ class CloudflareBypasser:
 
                 # Execute the Node.js script
                 try:
-                    cmd = ["tsx", node_script, "yuxuanleoli"]
+                    cmd = ["tsx", node_script, "raveoli22"]
                     res = subprocess.run(cmd, capture_output=True, text=True, check=True)
                     out = res.stdout.strip()
                     err = res.stderr.strip()
