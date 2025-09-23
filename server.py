@@ -183,6 +183,7 @@ def bypass_cloudflare(url: str, retries: int, log: bool, islogin: bool, proxy: s
         driver.get(url)
         cf_bypasser = CloudflareBypasser(driver, retries, log)
         cf_bypasser.bypass(islogin)
+        print('bypass_cloudflare complete.')
         return driver
     except Exception as e:
         driver.quit()

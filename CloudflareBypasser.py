@@ -153,9 +153,11 @@ class CloudflareBypasser:
                         self.clickIfVisible('[data-tn-element="otp-verify-login-submit-button"]', 'Signin')
                         self.clickIfVisible('[id="pass-WebAuthn-continue-button"]', 'Not Now')
 
-                        self.driver.get('https://www.indeed.com')
-                        self.driver.wait.ele_displayed('css:[id="AccountMenu"]', timeout=30)
+                        self.driver.get('https://www.indeed.com', retry=3, timeout=30)
+                        self.driver.wait.ele_displayed('css:[id="AccountMenu"]', timeout=30, raise_err=True)
                         accountMenu = self.driver.ele('css:[id="AccountMenu"]')
+                        accountMenu.focus()
+                        accountMenu.hover()
                         accountMenu.click()
                     else: 
                         self.log_message("Email Script Failed.")
